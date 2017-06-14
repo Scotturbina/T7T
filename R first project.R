@@ -2,6 +2,8 @@
 # pending the link between IBM forms and R
 
 
+
+
 #Removing signs of punctuation from headers, this will help us to filter
 
 names(F_Form1_115)<- gsub("[:,' .]" ,"", names(F_Form1_115))
@@ -29,7 +31,7 @@ for(i in 1:nrow(Form_Wihouts_BIDs)){
 
 
 
-# Adding a new column with variables of  In Progres PCRs
+# Adding a new data with variables of  In Progres PCRs
 # Adding variables
 PCR_STATE_Inprogress<- "In Progress"
 PCR_STATEDate_Inprogress<-""
@@ -37,6 +39,20 @@ PCR_STATEDate_Inprogress<-""
 InProgress_PCRS<- subset(Form_Wihouts_BIDs, PCRState== PCR_STATE_Inprogress & TTIMApproveDate !=PCR_STATEDate_Inprogress)
 ## View the data just to make sure 
 View(InProgress_PCRS)
+
+# Adding a new data with variables of Approved PCRs
+# Adding variables
+#PCR_STATE_APPROVED <- PCRState =="Approved" | "PE approved, but waiting on Billing" | "Approved and funds received" | "Aproved but waiting on billing"
+
+# Subsetting data in order to obtain the set that we need
+
+Approved_PCRs <- subset(Form_Wihouts_BIDs, PCRState == "Approved" | PCRState == "PE approved, but waiting on Billing" | 
+                          PCRState =="Approved and funds received" | PCRState=="Approved but waiting on billing")
+
+View(Approved_PCRs)
+
+
+
 
 
 
