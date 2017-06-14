@@ -27,9 +27,16 @@ for(i in 1:nrow(Form_Wihouts_BIDs)){
   }
 }
 
+
+
 # Adding a new column with variables of  In Progres PCRs
-
-
+# Adding variables
+PCR_STATE_Inprogress<- "In Progress"
+PCR_STATEDate_Inprogress<-""
+# Subsetting data in order to obtain the set that we need
+InProgress_PCRS<- subset(Form_Wihouts_BIDs, PCRState== PCR_STATE_Inprogress & TTIMApproveDate !=PCR_STATEDate_Inprogress)
+## View the data just to make sure 
+View(InProgress_PCRS)
 
 
 
