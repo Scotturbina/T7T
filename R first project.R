@@ -40,10 +40,6 @@ InProgress_PCRS<- subset(Form_Wihouts_BIDs, PCRState== PCR_STATE_Inprogress & TT
 ## View the data just to make sure 
 View(InProgress_PCRS)
 
-# Adding a new data with variables of Approved PCRs
-# Adding variables
-#PCR_STATE_APPROVED <- PCRState =="Approved" | "PE approved, but waiting on Billing" | "Approved and funds received" | "Aproved but waiting on billing"
-
 # Subsetting data in order to obtain the set that we need
 
 Approved_PCRs <- subset(Form_Wihouts_BIDs, PCRState == "Approved" | PCRState == "PE approved, but waiting on Billing" | 
@@ -52,6 +48,15 @@ Approved_PCRs <- subset(Form_Wihouts_BIDs, PCRState == "Approved" | PCRState == 
 View(Approved_PCRs)
 
 
+#Subsetting the by the other variables pending
+
+Other_pending <- subset(Form_Wihouts_BIDs, PCRState == PCR_STATE_Inprogress & Form_Wihouts_BIDs$TTIMApproveDate!=NA) ## Aqui necesito ayuda
+# |
+                          #PCRState != "Approved" | PCRState != "PE approved, but waiting on Billing" |
+                          #PCRState !="Approved and funds received" | PCRState !="Approved but waiting on billing")
+
+
+View(Other_pending)
 
 
 
