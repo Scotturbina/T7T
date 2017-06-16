@@ -1,19 +1,26 @@
+# Adding the required libraries
+
+require(xlsx)
+require(data.table)
+
 
 # pending the link between IBM forms and R
 
 
+#Converting into a Data Frame
 
+F_Form1_115<-data.frame(F_Form1_115)
 
 #Removing signs of punctuation from headers, this will help us to filter
 
 names(F_Form1_115)<- gsub("[:,' .]" ,"", names(F_Form1_115))
 
-#Creating a view without blacks ID's
+#Creating a view without blancks ID's
 
 Form_Wihouts_BIDs <- subset(F_Form1_115, ID !="")
+
 #Testing the view ( Just to make sure that blanks does not exist in the view)
 View(Form_Wihouts_BIDs) 
-
 
 
 #Selecting IMT US and Canada
@@ -37,7 +44,9 @@ PCR_STATE_Inprogress<- "In Progress"
 PCR_STATEDate_Inprogress<-""
 # Subsetting data in order to obtain the set that we need
 InProgress_PCRS<- subset(Form_Wihouts_BIDs, PCRState== PCR_STATE_Inprogress & TTIMApproveDate !=PCR_STATEDate_Inprogress)
-## View the data just to make sure 
+## Adding a new column to see status
+
+InProgress_PCRS$PCRs_Status<- "In Progress"
 View(InProgress_PCRS)
 
 # Subsetting data in order to obtain the set that we need
@@ -45,24 +54,49 @@ View(InProgress_PCRS)
 Approved_PCRs <- subset(Form_Wihouts_BIDs, PCRState == "Approved" | PCRState == "PE approved, but waiting on Billing" | 
                           PCRState =="Approved and funds received" | PCRState=="Approved but waiting on billing")
 
-View(Approved_PCRs)
+#Adding the new Column to see Status
+
+Approved_PCRs$PCRs_Status<- "Approved"
+
+### Reviewing
+
+Final_PCRS<- rbind(InProgress_PCRS, Approved_PCRs)
 
 
-#Subsetting the by the other variables pending
 
-Other_pending <- subset(Form_Wihouts_BIDs, PCRState == PCR_STATE_Inprogress & Form_Wihouts_BIDs$TTIMApproveDate!=NA) ## Aqui necesito ayuda
+
+## Gives the first part of pending data set
+
+
+
+Form_Wihouts_BIDs$TTIMApproveDate<-as.character(Form_Wihouts_BIDs$TTIMApproveDate)
+
+FistPendingDSet<-subset(Form_Wihouts_BIDs, PCRState== PCR_STATE_Inprogress & is.na(TTIMApproveDate) == TRUE)
+
+
+##################### todavia no ver hahha
+Other_pending1 <- subset(Form_Wihouts_BIDs, TTIMApproveDate != "") ## Aqui necesito ayuda
+class(Form_Wihouts_BIDs$TTIMApproveDate)
+View(Other_pending1)
 # |
                           #PCRState != "Approved" | PCRState != "PE approved, but waiting on Billing" |
                           #PCRState !="Approved and funds received" | PCRState !="Approved but waiting on billing")
 
+PCRState == PCR_STATE_Inprogress & 
 
-View(Other_pending)
-
-
-
+NewTTform<-rbind(InProgress_PCRS,Approved_PCRs)
 
 
+View(NewTTform)
+
+### Codigo que me paso johnny
+
+df <- read.csv("mydata.csv")
+df$TTIMApproveDate3 <- as.character(df$TTIMApproveDate)
+View(subset(df, is.na(TTIMApproveDate) == TRUE)) ## Aqui necesito ayuda
 
 
+library(xlsx)
 
+write.csv(Form_Wihouts_BIDs,"c:/mydata.csv")
 
