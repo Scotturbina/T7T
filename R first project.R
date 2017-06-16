@@ -65,36 +65,27 @@ Final_PCRS<- rbind(InProgress_PCRS, Approved_PCRs)
 
 
 
-## Gives the first part of pending data set
+## Gives the first part of pending dataset
+
+FirstPendingDSet<-subset(Form_Wihouts_BIDs, PCRState== PCR_STATE_Inprogress & is.na(TTIMApproveDate) == TRUE)
+
+## Adding the column and the status
+FirstPendingDSet$PCRs_Status<- "Other"
+
+#Gives the second part of pending dataset
+
+SecondPendingDSet <- subset(Form_Wihouts_BIDs,  PCRState != "PE approved, but waiting on Billing" & PCRState != "Approved" &
+                              PCRState != PCR_STATE_Inprogress &  PCRState != "Approved and funds received" &
+                              PCRState != "Approved but waiting on billing")
+
+SecondPendingDSet$PCRs_Status<- "Other"
 
 
-
-Form_Wihouts_BIDs$TTIMApproveDate<-as.character(Form_Wihouts_BIDs$TTIMApproveDate)
-
-FistPendingDSet<-subset(Form_Wihouts_BIDs, PCRState== PCR_STATE_Inprogress & is.na(TTIMApproveDate) == TRUE)
+ 
+View(SecondPendingDSet)
 
 
-##################### todavia no ver hahha
-Other_pending1 <- subset(Form_Wihouts_BIDs, TTIMApproveDate != "") ## Aqui necesito ayuda
-class(Form_Wihouts_BIDs$TTIMApproveDate)
-View(Other_pending1)
-# |
-                          #PCRState != "Approved" | PCRState != "PE approved, but waiting on Billing" |
-                          #PCRState !="Approved and funds received" | PCRState !="Approved but waiting on billing")
-
-PCRState == PCR_STATE_Inprogress & 
-
-NewTTform<-rbind(InProgress_PCRS,Approved_PCRs)
-
-
-View(NewTTform)
-
-### Codigo que me paso johnny
-
-df <- read.csv("mydata.csv")
-df$TTIMApproveDate3 <- as.character(df$TTIMApproveDate)
-View(subset(df, is.na(TTIMApproveDate) == TRUE)) ## Aqui necesito ayuda
-
+## Solo de prueba por el momento
 
 library(xlsx)
 
