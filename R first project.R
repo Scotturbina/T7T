@@ -19,9 +19,6 @@ names(F_Form1_115)<- gsub("[:,' .]" ,"", names(F_Form1_115))
 
 Form_Wihouts_BIDs <- subset(F_Form1_115, ID !="")
 
-#Testing the view ( Just to make sure that blanks does not exist in the view)
-View(Form_Wihouts_BIDs) 
-
 
 #Selecting IMT US and Canada
 
@@ -42,12 +39,13 @@ for(i in 1:nrow(Form_Wihouts_BIDs)){
 # Adding variables
 PCR_STATE_Inprogress<- "In Progress"
 PCR_STATEDate_Inprogress<-""
+
 # Subsetting data in order to obtain the set that we need
 InProgress_PCRS<- subset(Form_Wihouts_BIDs, PCRState== PCR_STATE_Inprogress & TTIMApproveDate !=PCR_STATEDate_Inprogress)
-## Adding a new column to see status
 
+## Adding a new column to see status
 InProgress_PCRS$PCRs_Status<- "In Progress"
-View(InProgress_PCRS)
+
 
 # Subsetting data in order to obtain the set that we need
 
@@ -57,11 +55,6 @@ Approved_PCRs <- subset(Form_Wihouts_BIDs, PCRState == "Approved" | PCRState == 
 #Adding the new Column to see Status
 
 Approved_PCRs$PCRs_Status<- "Approved"
-
-### Reviewing
-
-Final_PCRS<- rbind(InProgress_PCRS, Approved_PCRs)
-
 
 
 
@@ -78,16 +71,21 @@ SecondPendingDSet <- subset(Form_Wihouts_BIDs,  PCRState != "PE approved, but wa
                               PCRState != PCR_STATE_Inprogress &  PCRState != "Approved and funds received" &
                               PCRState != "Approved but waiting on billing")
 
+## Adding the column and the Status
+
 SecondPendingDSet$PCRs_Status<- "Other"
 
 
- 
-View(SecondPendingDSet)
+# Merge all in one uinque archive
+
+Semifinal_Dc<- rbind(InProgress_PCRS,Approved_PCRs, FirstPendingDSet, SecondPendingDSet)
+
+# This will be Johnny's input 
 
 
 ## Solo de prueba por el momento
 
 library(xlsx)
 
-write.csv(Form_Wihouts_BIDs,"c:/mydata.csv")
+write.csv(Semifinal_Dc,"c:/mydata.csv")
 
