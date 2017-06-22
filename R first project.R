@@ -107,11 +107,41 @@ colnames(DtFrame)[which(names(DtFrame) == "F_SingleLine8")] <- "PCR Owner:"
 
 colnames(DtFrame)[which(names(DtFrame) == "F_DropDown10")] <- "Engagement Failure Category:"
 
+colnames(DtFrame)[which(names(DtFrame) == "F_tsvr")] <- "Found in TSVR Session?"
 
+colnames(DtFrame)[which(names(DtFrame) == "F_Date2")] <- "Estimated Start Date:"
 
+colnames(DtFrame)[which(names(DtFrame) == "F_Date3")] <- "Estimated Finish Date:"
 
+colnames(DtFrame)[which(names(DtFrame) == "F_Date1")] <- "Budget Start Date:"
 
+colnames(DtFrame)[which(names(DtFrame) == "F_Date4")] <- "Budget End Date:"
 
+colnames(DtFrame)[which(names(DtFrame) == "F_Date7")] <- "Date Identified:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Table1")] <- "Cost Summary"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Currency16")] <- "T&T Total:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Currency17")] <- "SS Total (Est):"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Currency18")] <- "PCR Total (USD):"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_subprojects")] <- "Sub-Projects:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Currency4")] <- "T&T Non-Labor Cost"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Currency10")] <- "T&T Labor Cost"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Number2")] <- "T&T Labor Hours"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Currency11")] <- "T&T Total"
+
+colnames(DtFrame)[which(names(DtFrame) == "")] <- ""
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Currency10")] <- "T&T Labor Cost"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Currency10")] <- "T&T Labor Cost"
 
 
 
