@@ -137,11 +137,30 @@ colnames(DtFrame)[which(names(DtFrame) == "F_Number2")] <- "T&T Labor Hours"
 
 colnames(DtFrame)[which(names(DtFrame) == "F_Currency11")] <- "T&T Total"
 
+colnames(DtFrame)[which(names(DtFrame) == "F_Currency13")] <- "SS Non-Labor Cost"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Currency14")] <- "SS Labor Cost"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Number1")] <- "SS Labor Hours"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Currency15")] <- "SS Total"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Currency5")] <- "Total Non-Labor"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Currency6")] <- "Total Labor"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Number3")] <- "PCR Total - Hours"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Currency1")] <- "PCR Total (USD)"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Paragraphtext3")] <- "Detailed Summary:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Paragraphtext4")] <- "Background Information:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Paragraphtext5")] <- "Impact Assessment:"
+
 colnames(DtFrame)[which(names(DtFrame) == "")] <- ""
 
-colnames(DtFrame)[which(names(DtFrame) == "F_Currency10")] <- "T&T Labor Cost"
-
-colnames(DtFrame)[which(names(DtFrame) == "F_Currency10")] <- "T&T Labor Cost"
 
 
 
