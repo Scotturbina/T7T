@@ -159,9 +159,29 @@ colnames(DtFrame)[which(names(DtFrame) == "F_Paragraphtext4")] <- "Background In
 
 colnames(DtFrame)[which(names(DtFrame) == "F_Paragraphtext5")] <- "Impact Assessment:"
 
-colnames(DtFrame)[which(names(DtFrame) == "")] <- ""
+colnames(DtFrame)[which(names(DtFrame) == "F_Attachment1")] <- "Attachment"
 
+colnames(DtFrame)[which(names(DtFrame) == "F_Attachment2")] <- "Attachment_1"
 
+colnames(DtFrame)[which(names(DtFrame) == "F_Attachment3")] <- "Attachment_2"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Attachment4")] <- "Attachment_3"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_URL1")] <- "URL"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_URL2")] <- "URL_1"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_URL3")] <- "URL_2"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_URL4")] <- "URL_3"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_initiatorcomments")] <- "Initiator Comments:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_URL4")] <- "URL_3"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_URL4")] <- "URL_3"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_URL4")] <- "URL_3"
 
 
 #Converting into a Data Frame
