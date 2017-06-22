@@ -230,10 +230,17 @@ colnames(DtFrame)[which(names(DtFrame) == "F_recordid")] <- "RID"
 colnames(DtFrame)[which(names(DtFrame) == "F_ttimapprovedate")] <- "TTIM Approve Date:"
 
 
+## Needs to be updated
 
-myvars <- names(df1) %in% c("lastModifiedBy", "createdBy", "F_Attachment2",
-                            "F_Attachment3","F_Attachment4","F_Attachment1", 
+
+
+myvars <- names(DtFrame) %in% c("lastModifiedBy", "createdBy", "Attachment",
+                            "Attachment_1","Attachment_2","Attachment_3", 
                             "createdBy", "F_Table1", "F_Table2", "availableSubmitButtons")
+
+DtFrame <- DtFrame [,!myvars]
+
+
 
 
 #Removing signs of punctuation from headers, this will help us to filter
