@@ -12,6 +12,8 @@ library(httr)
 library(jsonlite)
 library(lubridate)
 library(stringi)
+library(devtools)
+
 
 #Username and Pass for the IBM Forms, methot is curl and the app is not allowing anon connections, so we are using secure connections.
 MyUser <- "kurbina@cr.ibm.com" 
@@ -41,7 +43,7 @@ this.raw.content <- rawToChar(raw.result$content)
 
 nchar(this.raw.content)
 
-substr(this.raw.content, 1, 135)
+substr(this.raw.content, 1, 160)
 
 this.content <- fromJSON(this.raw.content)
 
@@ -49,16 +51,16 @@ this.content <- fromJSON(this.raw.content)
 
 #length(this.content) 
 
-this.content[[4]] #the list we need 
+#this.content[[4]] #the list we need 
 
 this.content$items
 
-class(this.content$items)
 #************************************************
 
 #Creating the Data Frame in order to start cleaning the data, this variable will be used in the dataprocessing.R script
 DtFrame <- this.content$items
 #************************************************
+
 
 
 # Changing column names
@@ -177,20 +179,66 @@ colnames(DtFrame)[which(names(DtFrame) == "F_URL4")] <- "URL_3"
 
 colnames(DtFrame)[which(names(DtFrame) == "F_initiatorcomments")] <- "Initiator Comments:"
 
-colnames(DtFrame)[which(names(DtFrame) == "F_URL4")] <- "URL_3"
+colnames(DtFrame)[which(names(DtFrame) == "F_ttimcomments")] <- "TTIM Comments:"
 
-colnames(DtFrame)[which(names(DtFrame) == "F_URL4")] <- "URL_3"
+colnames(DtFrame)[which(names(DtFrame) == "F_dpecomments")] <- "DPE Comments:"
 
-colnames(DtFrame)[which(names(DtFrame) == "F_URL4")] <- "URL_3"
+colnames(DtFrame)[which(names(DtFrame) == "F_facomments")] <- "Contract FA Comments:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_solutioningcomments")] <- "Engagement Comments:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_pecomments")] <- "PE Comments:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_pfdcomments")] <- "Portfolio Director / T&T Portfolio Leader Comments:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_ivpcomments")] <- "Industry VP Comments:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_gmcomments")] <- "GM Comments:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_ttcomments")] <- "T&T VP / Director T&T Europe Comments:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_peapproval")] <- "PEs approval means s/he will or has billed the Client."
+
+colnames(DtFrame)[which(names(DtFrame) == "F_pdlcheckc2")] <- "This includes the confirmation that the new budget was HCP-D approved/certified."
+
+colnames(DtFrame)[which(names(DtFrame) == "F_pdlcheckc3")] <- "This includes the confirmation that the IMT GTS exec has provided his approval in writing."
+
+colnames(DtFrame)[which(names(DtFrame) == "F_capincreased")] <- "CAP Increased Y/N"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_dateclientagreedtopay")] <- "Signature date when client agreed to pay:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_finalamountbilled")] <- "Final Amount Billet to Client:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_clientagreedtopaycom")] <- "Payment comments:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_name")] <- "Name:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_lastname")] <- "Last Name:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_servertime")] <- "Server Time:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_linktopcr")] <- "Link"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_originalclass")] <- "Original Class:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_currentuser")] <- "Current User NAME:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_currentuseremail")] <- "Current User EMAIL:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_recordid")] <- "RID"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_ttimapprovedate")] <- "TTIM Approve Date:"
 
 
-#Converting into a Data Frame
 
-Form_PMO<-data.frame(Form_PMO)
+myvars <- names(df1) %in% c("lastModifiedBy", "createdBy", "F_Attachment2",
+                            "F_Attachment3","F_Attachment4","F_Attachment1", 
+                            "createdBy", "F_Table1", "F_Table2", "availableSubmitButtons")
+
 
 #Removing signs of punctuation from headers, this will help us to filter
 
-names(Form_PMO)<- gsub("[:,' .]" ,"", names(Form_PMO))
+names(DtFrame)<- gsub("[:]" ,"", names(DtFrame))
 
 #Creating a view without blancks ID's
 
@@ -264,7 +312,7 @@ Semifinal_Dc<- rbind(InProgress_PCRS,Approved_PCRs, FirstPendingDSet, SecondPend
 
 library(xlsx)
 
-write.csv(Semifinal_Dc,"c:/mydata.csv")
+write.csv(DtFrame,"c:/mydata1.csv")
 
 
 
